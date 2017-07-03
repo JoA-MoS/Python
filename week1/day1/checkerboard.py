@@ -12,4 +12,4 @@ def checkerboard(x, y):
         print line
 
 
-checkerboard(12, 12)
+checkerboard(175, 100)
