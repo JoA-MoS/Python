@@ -16,6 +16,17 @@ def isItLongList(lst):
     return 'Short List'
 
 
+def tester(val):
+    t = type(val)
+    if t is int:
+        return isItBig(val)
+    if t is str:
+        return isItLong(val)
+    if isinstance(val, list):
+        return isItLongList(val)
+    return 'Unsupported Type'
+
+
 sI = 45
 mI = 100
 bI = 455
@@ -32,19 +43,19 @@ eL = []
 spL = ['name', 'address', 'phone number', 'social security number']
 
 
-print isItBig(sI)
-print isItBig(mI)
-print isItBig(bI)
-print isItBig(eI)
-print isItBig(spI)
+print tester(sI)
+print tester(mI)
+print tester(bI)
+print tester(eI)
+print tester(spI)
 
-print isItLong(sS)
-print isItLong(mS)
-print isItLong(bS)
-print isItLong(eS)
+print tester(sS)
+print tester(mS)
+print tester(bS)
+print tester(eS)
 
-print isItLongList(aL)
-print isItLongList(mL)
-print isItLongList(lL)
-print isItLongList(eL)
-print isItLongList(spL)
+print tester(aL)
+print tester(mL)
+print tester(lL)
+print tester(eL)
+print tester(spL)
