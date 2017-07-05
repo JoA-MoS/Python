@@ -42,7 +42,7 @@ def part2_formatter(obj):
         full_name = name_formatter(i)
         counter += 1
         out += '{} - {} - {}\r\n'.format(counter,
-                                         full_name, len(full_name) - 1)
+                                         full_name.upper(), len(full_name) - 1)
     return out[:-1]
 
 
