@@ -1,4 +1,6 @@
-# coding=UTF-8
+# -*- coding: utf-8 -*-
+
+
 def checkerboard(x, y, char='*', delim=' '):
 
     for i in range(0, y):
@@ -13,4 +15,4 @@ def checkerboard(x, y, char='*', delim=' '):
         print line
 
 
-checkerboard(175, 100, '█')
+checkerboard(50, 50, u'█')
