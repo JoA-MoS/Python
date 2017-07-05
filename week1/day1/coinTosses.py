@@ -6,7 +6,7 @@ def coin_tosses(num):
     tails_heads = ('tails', 'heads')
     results = [0, 0]
     for i in range(1, num + 1):
-        toss = int(round(random.random()))
+        toss = random.randint(0, 1)
         results[toss] += 1
         print str_template.format(i, tails_heads[toss], results[1], results[0])
 
