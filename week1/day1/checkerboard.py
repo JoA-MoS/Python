@@ -1,15 +1,16 @@
-def checkerboard(x, y):
+# coding=UTF-8
+def checkerboard(x, y, char='*', delim=' '):
+
     for i in range(0, y):
         line = ''
         shift = i % 2
         for j in range(0, x):
             j = j - shift
-            # print str(j) + ' - ' + str(j % 2)
             if j % 2:
-                line += '*'
+                line += char
             else:
-                line += ' '
+                line += delim
         print line
 
 
-checkerboard(175, 100)
+checkerboard(175, 100, '█')

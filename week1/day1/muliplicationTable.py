@@ -1,4 +1,5 @@
 def multiplicationTable(start, end):
+    end = end + 1
     for i in range(start, end):
         if i == start:
             line = 'x\t'
@@ -12,4 +13,4 @@ def multiplicationTable(start, end):
         print line
 
 
-multiplicationTable(5, 10)
+multiplicationTable(1, 10)
