@@ -15,4 +15,7 @@ def checkerboard(x, y, char='*', delim=' '):
         print line
 
 
+checkerboard(50, 50)
+
 checkerboard(50, 50, u'█')
+checkerboard(50, 50, u'█', '*')
