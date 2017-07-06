@@ -41,13 +41,31 @@ class Dragon(Animal):
 
 
 a = Animal('Ted')
-a.walk().walk().walk().run().run().display_health()
+(a.walk()
+    .walk()
+    .walk()
+    .run()
+    .run()
+    .display_health())
+
+print a
 
 d = Dog('Goldy')
-d.walk().walk().walk().pet().pet().display_health()
+(d.walk()
+    .walk()
+    .walk()
+    .pet()
+    .pet()
+    .display_health())
+
+print d
 
 dragon = Dragon('Toothless')
 
-dragon.fly().walk().run().display_health()
+(dragon
+    .fly()
+    .walk()
+    .run()
+    .display_health())
 
 print dragon
