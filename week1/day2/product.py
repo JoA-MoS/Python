@@ -19,6 +19,10 @@ class Product(object):
         self.cost = cost
         self.status = status
 
+    def __str__(self):
+        template = 'Price: {}\r\nName: {}\r\nWeight: {}\r\nBrand: {}\r\nCost: {}\r\nStatus: {}'
+        return template.format(self.price, self.name, self.weight, self.brand, self.cost, self.status)
+
     def sell(self):
         self.status = Statuses.SOLD
         return self
@@ -51,3 +55,6 @@ products[0].sell().display_info()
 products[0].return_product(Reasons.LIKE_NEW).display_info()
 products[0].return_product(Reasons.OPEN_BOX).display_info()
 products[0].return_product(Reasons.DEFECTIVE).display_info()
+
+print '======================='
+print products[0]
