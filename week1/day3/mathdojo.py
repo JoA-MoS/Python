@@ -22,10 +22,9 @@ class MathDojo(object):
         return self
 
 
-# md = MathDojo(0)
+md = MathDojo(0)
 
-# print md.add(2).add(2, 5).subtract(3, 2).result
-# print md
+print md.add(2).add(2, 5).subtract(3, 2)
 
 
 md2 = MathDojo()
