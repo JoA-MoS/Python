@@ -1,0 +1,28 @@
+{% extends 'layout.html' %} 
+{% block content %} 
+
+<header>
+    Your Gold: <input type="text" text="{{player.gold}}" readonly>
+</header>
+<div class="flex-container">
+    {% for building in buildings %}
+        <form class="building" action="/process_money/{{ building.name.lower() }}" method="post">
+            <h3>{{ building.name }}</h3>
+            <p>(earns {{building.min_gold}} - {{building.max_gold}} gold)</p>
+            <input type="submit" value="Find Gold!">
+        </form>
+    {% endfor %} 
+</div>
+<div>
+    <p>Activities:</p>
+    <div id="activity-list">
+        <p>Testing</p>
+        <p>Testing</p>
+        <p>Testing</p>
+        {% for activity in activities %}
+            <p>Testing</p>
+            
+        {% endfor %} 
+    </div>
+</div>
+{% endblock %}
