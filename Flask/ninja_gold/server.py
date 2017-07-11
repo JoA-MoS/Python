@@ -1,35 +1,45 @@
-from flask import Flask, render_template, redirect
-import json
+from flask import Flask, render_template, redirect, session
 from building import Building, Buildings
 from player import Player
-from random import randint, randrange
+
 
 app = Flask(__name__)
+app.secret_key = 'NinjaGold2'
 
-PLAYER = Player()
 
 BUILDINGS = Buildings()
 BUILDINGS.extend([Building('Farm', 10, 20),
-                    Building('Cave', 5, 10),
-                    Building('House', 2, 5),
-                    Building('Casino', -50, 50), ])
+                  Building('Cave', 5, 10),
+                  Building('House', 2, 5),
+                  Building('Casino', -50, 50), ])
 
 
 @app.route('/')
 def default():
-    print json.dumps(PLAYER.__dict__)
-    print json.dumps([b.__dict__ for b in BUILDINGS])
-    return render_template('/index.html', buildings=BUILDINGS, player=PLAYER)
+    if 'player' not in session:
+        print 'creating player'
+        temp = Player('Justin', 0)
+        session['player'] = temp.toJson()
+    else:
+        print 'getting existing player'
+        temp = Player.newFromJson(session['player'])
+    print tuple(temp)
+    return render_template('/index.html', buildings=BUILDINGS, player=temp)
 
 
 @app.route('/process_money/<building>', methods=['POST'])
 def process_money(building):
-    max_gold = BUILDINGS.getByName(building).max_gold
-    min_gold = BUILDINGS.getByName(building).min_gold
-    print str(min_gold) + ' - ' + str(max_gold)
-    cur_gold = randint(min_gold, max_gold)
-    print cur_gold
+    print session['player']
+    p = Player().loadJson(session['player'])
+    print 'before building - ' + str(p.gold)
+    earnings = BUILDINGS.getByName(building).getGold()
 
+    print 'earnings - ' + str(earnings)
+
+    p.gold = p.gold + earnings
+
+    print 'after building - ' + str(p.gold)
+    session['player'] = p.toJson()
     return redirect('/')
 
 

@@ -2,7 +2,7 @@
 {% block content %} 
 
 <header>
-    Your Gold: <input type="text" text="{{player.gold}}" readonly>
+    Your Gold: <input type="text" text="{{ player.gold }}" readonly>
 </header>
 <div class="flex-container">
     {% for building in buildings %}
@@ -25,4 +25,16 @@
         {% endfor %} 
     </div>
 </div>
+{% for s in session %}
+<div>
+    <h4>{{ s }}:</h4>
+    <pre>
+    {{session[s]}}
+    </pre> 
+</div>
+
+Im here - {{session['player'].name}}
+       
+{% endfor %} 
+
 {% endblock %}
