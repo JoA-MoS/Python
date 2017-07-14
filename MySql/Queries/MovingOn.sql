@@ -1,0 +1,1 @@
+-- I am prety versed in SQL so I am skipping the rest of the assignments
