@@ -5,17 +5,16 @@ from flask import session
 
 
 class Player(object):
-    def __init__(self, name='Ninja', gold=0, *args, **kwargs):
-        print
+    def __init__(self, name, gold, *args, **kwargs):
         self.name = name
         self.gold = gold
 
-    @classmethod
-    def newFromJson(cls, jsonStr):
-        temp = cls()
-        temp = json.loads(jsonStr, object_hook=lambda d: namedtuple(
-            'X', d.keys())(*d.values()))
-        return temp
+    # @classmethod
+    # def newFromJson(cls, jsonStr):
+    #     temp = cls()
+    #     temp = json.loads(jsonStr, object_hook=lambda d: namedtuple(
+    #         'X', d.keys())(*d.values()))
+    #     return temp
 
     # I wanted load and Save in another class but could not get them implemented generically
     def loadJson(self, jsonStr):
