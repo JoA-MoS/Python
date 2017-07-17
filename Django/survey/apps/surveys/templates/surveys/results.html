@@ -1,0 +1,34 @@
+{% extends "./base.html" %} {% block content %}
+
+
+<div>
+    <div class="form-group">
+        <label for="name">Your Name:</label>
+        <input type="text" class="form-control" name="name" id="name" aria-describedby="helpName" placeholder="">
+        <small id="helpName" class="form-text text-muted">Enter your name</small>
+    </div>
+
+    <div class="form-group">
+        <label for="location">Dojo Location:</label>
+        <select class="form-control" name="location" id="location">
+    <option>Mountain View</option>
+    <option>Seattle</option>
+    <option>Chicago</option>
+      </select>
+    </div>
+    <div class="form-group">
+        <label for="language">Favorite Language</label>
+        <select class="form-control" name="language" id="language">
+    <option>Javascript</option>
+    <option>Python</option>
+    <option>C#</option>
+      </select>
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment (optional):</label>
+        <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
+    </div>
+</div>
+
+
+{% endblock content %}
