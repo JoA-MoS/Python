@@ -1,0 +1,56 @@
+{% extends './base.html' %} {% block content %}
+<table class="table table-striped">
+    <thead class="thead-inverse">
+        <tr>
+            <th>id</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td scope="row">{{book.id}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.category}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<form action="/books/add" method="post">
+    {% csrf_token %}
+    <h2>Add a Book</h2>
+    {% if messages %}
+    <div class="alert alert-danger">
+        <ul class="messages">
+            {% for msg in messages %}
+            <li>
+                {{msg.message}}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" name="title" id="title" aria-describedby="bookTitle" placeholder="">
+        <small id="bookTitle" class="form-text text-muted">Enter the Book Title</small>
+    </div>
+
+    <div class="form-group">
+        <label for="category">Category</label>
+        <input type="text" class="form-control" name="category" id="category" aria-describedby="bookCategory" placeholder="">
+        <small id="bookCategory" class="form-text text-muted">Enter the book Category</small>
+    </div>
+    <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text" class="form-control" name="author" id="author" aria-describedby="bookAuthor" placeholder="">
+        <small id="bookAuthor" class="form-text text-muted">Enter the book author</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock content %}
