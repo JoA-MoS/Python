@@ -1,0 +1,25 @@
+body{
+    width: 80%;
+    margin: auto;
+}
+
+header{
+    margin: 20px 0;
+}
+
+.flex-container{
+    display:flex;
+    justify-content: space-between;
+}
+
+.building{
+    border: 2px solid gray;
+    text-align: center;
+    padding: 20px;
+}
+
+#activity-list{
+    height: 150px;
+    overflow-y: scroll;
+    border: 2px solid darkgray;
+}

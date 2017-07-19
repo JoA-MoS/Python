@@ -1,0 +1,30 @@
+{% extends 'layout.html' %} {% block content %}
+<form action="/result" method="post">
+    <div class="form-group">
+        <label for="name">Your Name:</label>
+        <input type="text" name="name" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="location">Dojo Location:</label>
+        <select name="location" class="form-control">
+            <option value="San Jose">San Jose</option>
+            <option value="Chicago">Chicago</option>
+            <option value="Dallas">Dallas</option>
+            <option value="Seattle">Seattle</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="language">Favorite Language:</label>
+        <select name="language" class="form-control">
+            <option value="Python">Python</option>
+            <option value="C#">C#</option>
+            <option value="TypeScript">TypeScript</option>
+            <option value="Java">Java</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment (optional):</label>
+        <textarea class="form-control" name="comment" rows="3"></textarea>
+    </div>
+    <input type="submit" value="Submit">
+</form> {% endblock %}

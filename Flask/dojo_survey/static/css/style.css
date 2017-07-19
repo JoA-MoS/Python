@@ -1,0 +1,13 @@
+#container {
+    width: 80%;
+    margin: auto;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    display: block;
+    width: 100%
+}

@@ -1,0 +1,23 @@
+{% extends './base.html' %} {% block content %}
+
+<header>
+    Your Gold: {{ player.gold }}
+</header>
+<div class="flex-container">
+    {% for building in buildings %}
+    <form class="building" action="/process_money/{{ building.name }}/" method="post">
+        {% csrf_token %}
+        <h3>{{ building.name }}</h3>
+        <p>(earns {{building.min_gold}} - {{building.max_gold}} gold)</p>
+        <input type="submit" value="Find Gold!">
+    </form>
+    {% endfor %}
+</div>
+<div>
+    <p>Activities:</p>
+    <div id="activity-list">
+        {% for a in player.activities %}
+        <p class="{{a.color}}">{{ a.time_stamp }} - {{ a.message}} {% endfor %}
+    </div>
+</div>
+{% endblock content %}
