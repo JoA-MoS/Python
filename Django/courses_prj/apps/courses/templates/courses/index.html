@@ -1,0 +1,53 @@
+{% extends './base.html' %} {% block content %}
+
+<form action="/courses/add/" method="post">
+    {% csrf_token %}
+    <h2>Add new courses</h2>
+    {% if messages %}
+    <div class="alert alert-danger">
+        <ul class="messages">
+            {% for msg in messages %}
+            <li>
+                {{msg.message}}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" name="name" id="name" aria-describedby="courseName" placeholder="">
+        <small id="courseName" class="form-text text-muted">Enter the course name</small>
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<br>
+<br>
+
+<table class="table table-striped">
+    <thead class="thead-inverse">
+        <tr>
+            <th>Course Name</th>
+            <th>Description</th>
+            <th>Date Added</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for course in courses %}
+        <tr>
+            <td scope="row">{{course.name}}</td>
+            <td>{{course.description}}</td>
+            <td>{{course.created_at|date:"SHORT_DATETIME_FORMAT"}}</td>
+            <td><a href="./{{course.id}}/confirm-delete/">remove</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock content %}

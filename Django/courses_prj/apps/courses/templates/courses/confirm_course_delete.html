@@ -1,0 +1,8 @@
+{% extends './base.html' %} {% block content %}
+
+<h2>Are you sure you want to delete the following course?</h2>
+<p><label>Name:</label>{{course.name}}</p>
+<p><label>Description:</label>{{course.description}}</p>
+
+<a name="cancel" id="cancel" class="btn btn-secondary" href="/courses" role="button">Cancel</a>
+<a name="delete" id="delete" data-course-id="{{course.id}}" class="btn btn-danger" href="/courses" role="button">Yes! I want to delete this</a>{% endblock content %}
