@@ -3,30 +3,50 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.utils import timezone
-import valid
+import isvalid
+from error import Error
 
 # Create your models here.
-
-
-class Error(object):
-    def __init__(self, field, msg):
-        self.field = field
-        self.message = msg
-        self.created_at = timezone.now()
 
 
 class UserManager(models.Manager):
     def validate(self, data):
         errors = []
-        if not valid.first_name(data['first_name']):
-            errors.append(Error('first_name'))
+        if 'first_name' in data and 'last_name' in data and 'email' in data and 'password' in data and 'c_password' in data:
+            valid, msg = isvalid.first_name(data['first_name'])
+            if not valid:
+                errors.append(Error('first_name', msg))
+            valid, msg = isvalid.last_name(data['last_name'])
+            if not valid:
+                errors.append(Error('last_name', msg))
+            valid, msg = isvalid.email(data['email'])
+            if not valid:
+                errors.append(Error('email', msg))
+            valid, msg = isvalid.password(
+                data['password'], data['c_password'])
+            if not valid:
+                errors.append(Error('password', msg))
+            # if all the fields look good make sure the user doesnt already exist
+            if not errors:
+                existing_users = self.filter(email=data['email'])
+                if existing_users:
+                    errors.append(Error(
+                        'email', 'email already registered if you have forgoten your password please use the password reset link'))
+
+        else:
+            errors.append(
+                Error('form', 'Something went wrong please try to submit the form again'))
         if errors:
             return (False, errors)
         else:
+
             return (True, data)
 
     def add(self, data):
+        print data
+        print 'strting validation'
         valid, errors = self.validate(data)
+        print 'finished validation'
         if valid:
             return (valid, self.create(first_name=data['first_name'],
                                        last_name=data['last_name'],
