@@ -26,7 +26,7 @@ def register(request):
     if valid:
         print '---------------VALID-------------'
         print data
-        return HttpResponse('User Created')
+        return HttpResponse('<h2>Success! Welcome, {}!</h2><p>Successfully registered</p>'.format(data.first_name))
     else:
         print '============INVALID==========='
         print data
@@ -35,3 +35,21 @@ def register(request):
             messages.add_message(request, messages.ERROR, i.message)
     # can we do this better
     return redirect('/users/registration')
+
+
+def showLogin(request):
+    return render(request, 'users/login.html')
+
+
+@require_http_methods(['POST'])
+def login(request):
+    print request.POST
+    valid, data = User.objects.validateLogin(request.POST)
+    if valid:
+        print data
+        return HttpResponse('<h2>Success! Welcome, {}!</h2><p>Successfully logged in</p>'.format(data.first_name))
+    else:
+        for i in data:
+            print i
+            messages.add_message(request, messages.ERROR, i.message)
+        return redirect('/users/login')

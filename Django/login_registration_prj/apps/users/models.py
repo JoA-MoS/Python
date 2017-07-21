@@ -10,7 +10,7 @@ from error import Error
 
 
 class UserManager(models.Manager):
-    def validate(self, data):
+    def validateRegistration(self, data):
         errors = []
         if 'first_name' in data and 'last_name' in data and 'email' in data and 'password' in data and 'c_password' in data:
             valid, msg = isvalid.first_name(data['first_name'])
@@ -44,8 +44,8 @@ class UserManager(models.Manager):
 
     def add(self, data):
         print data
-        print 'strting validation'
-        valid, errors = self.validate(data)
+        print 'starting validation'
+        valid, errors = self.validateRegistration(data)
         print 'finished validation'
         if valid:
             return (valid, self.create(first_name=data['first_name'],
@@ -54,6 +54,29 @@ class UserManager(models.Manager):
                                        password=data['password'],))
         else:
             return (valid, errors)
+
+    def validateLogin(self, data):
+        errors = []
+        users = {}
+        if 'email' in data and 'password' in data:
+            valid, msg = isvalid.email(data['email'])
+            if not valid:
+                errors.append(Error('email', msg))
+            # if all the email looks good check if the user password matches
+            if not errors:
+                users = self.filter(
+                    email=data['email'], password=data['password'])
+                if len(users) != 1:
+                    errors.append(Error(
+                        'email, password', 'incorrect email and password combination please try again'))
+
+        else:
+            errors.append(
+                Error('form', 'Something went wrong please try to submit the form again'))
+        if errors:
+            return (False, errors)
+        else:
+            return (True, users[0])
 
 
 class User(models.Model):
